@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSVc.Mods - Secure Roblox Mods Download</title>
+    <title>HSVc Exploits - Secure Roblox Exploits Download</title>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -33,6 +33,9 @@
             color: white;
             padding: 1.5rem 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .container {
@@ -63,38 +66,6 @@
             color: var(--secondary-color);
         }
         
-        .name-customizer {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 15px;
-            border-radius: 30px;
-        }
-        
-        .name-customizer input {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            width: 150px;
-        }
-        
-        .name-customizer button {
-            background: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .name-customizer button:hover {
-            background: #2980b9;
-        }
-        
         nav ul {
             display: flex;
             list-style: none;
@@ -106,10 +77,13 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
         
         nav a:hover {
             color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .hero {
@@ -218,7 +192,7 @@
         
         .downloads-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
         
@@ -242,6 +216,8 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
+            background-size: cover;
+            background-position: center;
         }
         
         .download-content {
@@ -265,6 +241,7 @@
         .download-actions {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .btn-small {
@@ -371,6 +348,36 @@
             font-size: 0.9rem;
         }
         
+        .config-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .config-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .config-section code {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            display: block;
+            margin: 1rem 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -384,6 +391,10 @@
             .hero p {
                 font-size: 1rem;
             }
+            
+            .download-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -392,11 +403,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1 id="site-name">HSVc.Mods</h1>
-                </div>
-                <div class="name-customizer">
-                    <input type="text" id="name-input" placeholder="Change site name">
-                    <button id="name-change-btn">Update</button>
+                    <h1>HSVc Exploits</h1>
                 </div>
                 <nav>
                     <ul>
@@ -412,8 +419,8 @@
 
     <section class="hero" id="home">
         <div class="container">
-            <h2>Secure Roblox Mods & Enhancements</h2>
-            <p>Download verified and safe modifications for Roblox to enhance your gaming experience. All our mods are thoroughly scanned for security.</p>
+            <h2>Secure Roblox Exploits & Enhancements</h2>
+            <p>Download verified and safe exploits for Roblox to enhance your gaming experience. All our exploits are thoroughly scanned for security.</p>
             <a href="#downloads" class="btn">Browse Downloads</a>
         </div>
     </section>
@@ -421,29 +428,29 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose HSVc.Mods?</h2>
-                <p>We provide the safest and most reliable Roblox modifications available</p>
+                <h2>Why Choose HSVc Exploits?</h2>
+                <p>We provide the safest and most reliable Roblox exploits available</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
                     <h3>Security First</h3>
-                    <p>All mods are thoroughly scanned for malware and viruses before being made available for download.</p>
+                    <p>All exploits are thoroughly scanned for malware and viruses before being made available for download.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
                     <h3>Performance Optimized</h3>
-                    <p>Our mods are designed to enhance your gameplay without compromising performance or stability.</p>
+                    <p>Our exploits are designed to enhance your gameplay without compromising performance or stability.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔄</div>
                     <h3>Regular Updates</h3>
-                    <p>We continuously update our mods to ensure compatibility with the latest Roblox versions.</p>
+                    <p>We continuously update our exploits to ensure compatibility with the latest Roblox versions.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">👥</div>
                     <h3>Community Driven</h3>
-                    <p>Our mods are developed and tested by an active community of Roblox enthusiasts.</p>
+                    <p>Our exploits are developed and tested by an active community of Roblox enthusiasts.</p>
                 </div>
             </div>
         </div>
@@ -453,53 +460,11 @@
         <div class="container">
             <div class="section-title">
                 <h2>Popular Downloads</h2>
-                <p>Browse our collection of safe and verified Roblox modifications</p>
+                <p>Browse our collection of safe and verified Roblox exploits</p>
             </div>
-            <div class="downloads-grid">
-                <div class="download-card">
-                    <div class="download-img" style="background-color: #3498db;">FPS Booster</div>
-                    <div class="download-content">
-                        <h3>Performance Enhancer</h3>
-                        <p>Boost your FPS and reduce lag in Roblox games with this lightweight mod.</p>
-                        <div class="download-meta">
-                            <span>Version: 2.1.4</span>
-                            <span>Size: 3.2 MB</span>
-                        </div>
-                        <div class="download-actions">
-                            <a href="#" class="btn btn-small">Download</a>
-                            <a href="#" class="btn btn-small btn-accent">Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="download-card">
-                    <div class="download-img" style="background-color: #e74c3c;">UI Customizer</div>
-                    <div class="download-content">
-                        <h3>Advanced UI Mod</h3>
-                        <p>Customize your Roblox interface with new themes, layouts, and features.</p>
-                        <div class="download-meta">
-                            <span>Version: 1.7.2</span>
-                            <span>Size: 5.8 MB</span>
-                        </div>
-                        <div class="download-actions">
-                            <a href="#" class="btn btn-small">Download</a>
-                            <a href="#" class="btn btn-small btn-accent">Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="download-card">
-                    <div class="download-img" style="background-color: #2ecc71;">Texture Pack</div>
-                    <div class="download-content">
-                        <h3>HD Texture Pack</h3>
-                        <p>Enhance Roblox visuals with high-definition textures for a better gaming experience.</p>
-                        <div class="download-meta">
-                            <span>Version: 3.0.1</span>
-                            <span>Size: 12.4 MB</span>
-                        </div>
-                        <div class="download-actions">
-                            <a href="#" class="btn btn-small">Download</a>
-                            <a href="#" class="btn btn-small btn-accent">Details</a>
-                        </div>
-                    </div>
+            <div class="downloads-grid" id="downloads-container">
+                <div class="loading">
+                    <p>Loading downloads...</p>
                 </div>
             </div>
         </div>
@@ -510,7 +475,7 @@
             <div class="security-content">
                 <div class="security-text">
                     <h2>Your Security Is Our Priority</h2>
-                    <p>We understand the risks associated with downloading modifications for online games. That's why we've implemented multiple layers of security to protect our users.</p>
+                    <p>We understand the risks associated with downloading exploits for online games. That's why we've implemented multiple layers of security to protect our users.</p>
                     <ul class="security-features">
                         <li>All files are scanned with multiple antivirus engines</li>
                         <li>Digital signatures verify file integrity</li>
@@ -535,80 +500,133 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>HSVc.Mods</h3>
+                    <h3>HSVc Exploits</h3>
                     <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press</a></li>
+                        <li><a href="#home">About Us</a></li>
+                        <li><a href="#features">Our Team</a></li>
+                        <li><a href="#downloads">Careers</a></li>
+                        <li><a href="#security">Press</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Downloads</h3>
                     <ul class="footer-links">
-                        <li><a href="#">All Mods</a></li>
-                        <li><a href="#">Popular</a></li>
-                        <li><a href="#">New Releases</a></li>
-                        <li><a href="#">Upcoming</a></li>
+                        <li><a href="#downloads">All Exploits</a></li>
+                        <li><a href="#downloads">Popular</a></li>
+                        <li><a href="#downloads">New Releases</a></li>
+                        <li><a href="#downloads">Upcoming</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Support</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Community</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Status</a></li>
+                        <li><a href="#security">Help Center</a></li>
+                        <li><a href="#security">Community</a></li>
+                        <li><a href="#security">Contact Us</a></li>
+                        <li><a href="#security">Status</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Legal</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">DMCA</a></li>
+                        <li><a href="#security">Terms of Service</a></li>
+                        <li><a href="#security">Privacy Policy</a></li>
+                        <li><a href="#security">Cookie Policy</a></li>
+                        <li><a href="#security">DMCA</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 HSVc.Mods. All rights reserved. Roblox is a registered trademark of Roblox Corporation. This site is not affiliated with Roblox Corporation.</p>
+                <p>&copy; 2023 HSVc Exploits. All rights reserved. Roblox is a registered trademark of Roblox Corporation. This site is not affiliated with Roblox Corporation.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const siteNameElement = document.getElementById('site-name');
-            const nameInput = document.getElementById('name-input');
-            const nameChangeBtn = document.getElementById('name-change-btn');
-            
-            // Load saved name from localStorage if available
-            const savedName = localStorage.getItem('siteName');
-            if (savedName) {
-                siteNameElement.textContent = savedName;
-            }
-            
-            // Update site name when button is clicked
-            nameChangeBtn.addEventListener('click', function() {
-                const newName = nameInput.value.trim();
-                if (newName) {
-                    siteNameElement.textContent = newName;
-                    localStorage.setItem('siteName', newName);
-                    nameInput.value = '';
-                    
-                    // Show confirmation
-                    alert('Site name updated to: ' + newName);
-                }
-            });
-            
-            // Also update when Enter key is pressed in the input field
-            nameInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    nameChangeBtn.click();
+        // Configuration
+        const CONFIG = {
+            jsonUrl: 'downloads.json' // Path to your JSON file
+        };
+
+        // DOM Elements
+        const downloadsContainer = document.getElementById('downloads-container');
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', loadDownloads);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
+
+        // Functions
+        async function loadDownloads() {
+            try {
+                const response = await fetch(CONFIG.jsonUrl);
+                if (!response.ok) {
+                    throw new Error('Failed to load downloads');
+                }
+                
+                const data = await response.json();
+                displayDownloads(data.downloads);
+            } catch (error) {
+                console.error('Error loading downloads:', error);
+                downloadsContainer.innerHTML = `
+                    <div class="loading">
+                        <p>Error loading downloads. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayDownloads(downloads) {
+            if (!downloads || downloads.length === 0) {
+                downloadsContainer.innerHTML = `
+                    <div class="loading">
+                        <p>No downloads available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            downloadsContainer.innerHTML = downloads.map(download => `
+                <div class="download-card">
+                    <div class="download-img" style="${download.image ? `background-image: url('${download.image}')` : `background-color: ${getRandomColor()}`}">
+                        ${!download.image ? download.title : ''}
+                    </div>
+                    <div class="download-content">
+                        <h3>${download.title}</h3>
+                        <p>${download.description}</p>
+                        <div class="download-meta">
+                            <span>Version: ${download.version || '1.0.0'}</span>
+                            <span>Size: ${download.size || 'Unknown'}</span>
+                        </div>
+                        <div class="download-actions">
+                            <a href="${download.downloadLink}" class="btn btn-small" target="_blank">Download</a>
+                            ${download.website ? `<a href="${download.website}" class="btn btn-small btn-accent" target="_blank">Website</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getRandomColor() {
+            const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
     </script>
 </body>
 </html>
