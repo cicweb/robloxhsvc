@@ -190,6 +190,34 @@
             padding: 4rem 0;
         }
         
+        .platform-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .platform-tab {
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .platform-tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .platform-tab:hover:not(.active) {
+            background: #f8f9fa;
+        }
+        
         .downloads-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -236,6 +264,24 @@
             margin-bottom: 1rem;
             font-size: 0.9rem;
             color: #7f8c8d;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-updated {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .status-outdated {
+            background: var(--warning-color);
+            color: white;
         }
         
         .download-actions {
@@ -348,34 +394,19 @@
             font-size: 0.9rem;
         }
         
-        .config-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .config-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .config-section code {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 5px;
-            display: block;
-            margin: 1rem 0;
-            font-family: monospace;
-            white-space: pre-wrap;
-            border-left: 4px solid var(--secondary-color);
-        }
-        
         .loading {
             text-align: center;
             padding: 2rem;
             color: #7f8c8d;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: var(--accent-color);
+            background: #ffeaea;
+            border-radius: 10px;
+            margin: 1rem 0;
         }
         
         @media (max-width: 768px) {
@@ -394,6 +425,15 @@
             
             .download-actions {
                 flex-direction: column;
+            }
+            
+            .platform-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .platform-tab {
+                width: 200px;
             }
         }
     </style>
@@ -459,12 +499,18 @@
     <section class="downloads" id="downloads">
         <div class="container">
             <div class="section-title">
-                <h2>Popular Downloads</h2>
+                <h2>Available Exploits</h2>
                 <p>Browse our collection of safe and verified Roblox exploits</p>
             </div>
+            
+            <div class="platform-tabs" id="platform-tabs">
+                <button class="platform-tab active" data-platform="windows">Windows</button>
+                <button class="platform-tab" data-platform="macos">macOS</button>
+            </div>
+            
             <div class="downloads-grid" id="downloads-container">
                 <div class="loading">
-                    <p>Loading downloads...</p>
+                    <p>Loading exploits from API...</p>
                 </div>
             </div>
         </div>
@@ -543,16 +589,139 @@
     </footer>
 
     <script>
-        // Configuration
-        const CONFIG = {
-            jsonUrl: 'downloads.json' // Path to your JSON file
+        // Configuration - Your download links and descriptions
+        const DOWNLOAD_CONFIG = {
+            "zenith": {
+                "description": "Best-value paid Windows exploit with premium features and regular updates (Recommended)",
+                "downloadLink": "https://zenith.win",
+                "website": "https://zenith.win"
+            },
+            "velocity": {
+                "description": "High-performance exploit provided for free.",
+                "downloadLink": "https://getvelocity.lol",
+                "website": "https://getvelocity.lol"
+            },
+            "bunni": {
+                "description": " [Paid] User-friendly exploit with intuitive interface and powerful capabilities",
+                "downloadLink": "https://discord.gg/bunnilol",
+                "website": "https://discord.gg/bunnilol"
+            },
+            "ronin": {
+                "description": " [Paid] Optimized Usermode-focused experience.",
+                "downloadLink": "https://getronin.xyz",
+                "website": "https://getronin.xyz"
+            },
+            "solara": {
+                "description": "Good exploit with good user interface",
+                "downloadLink": "https://getsolara.dev",
+                "website": "https://getsolara.dev"
+            },
+            "swift": {
+                "description": "Overall Best Free exploit with Multi-Injection",
+                "downloadLink": "https://getswift.vip",
+                "website": "https://getswift.vip"
+            },
+            "matcha": {
+                "description": "[Paid] Modern exploit with clean UI and extensive feature set",
+                "downloadLink": "https://www.key-empire.com/roblox#matcha",
+                "website": "https://discord.com/invite/matchalol4"
+            },
+            "lx63": {
+                "description": "Free Exploit with solid features",
+                "downloadLink": "https://lx63.xyz",
+                "website": "https://lx63.xyz"
+            },
+            "volcano": {
+                "description": "Powerful exploit with extensive customization options",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://volcano.wtf"
+            },
+            "xeno": {
+                "description": "Feature-rich exploit with regular updates and community support",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://xeno-official.com"
+            },
+            "assembly": {
+                "description": "Low-level exploit with advanced memory manipulation capabilities",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://assembly-official.com"
+            },
+            "severe": {
+                "description": "High-performance exploit optimized for competitive gameplay",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://severe-official.com"
+            },
+            "seliware": {
+                "description": "Professional exploit with extensive scripting capabilities",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://seliware-official.com"
+            },
+            "sirhurt": {
+                "description": "Premium Windows exploit with advanced injection methods",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://sirhurt-official.com"
+            },
+            "dx9ware": {
+                "description": "DirectX-based exploit with enhanced graphical capabilities",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://dx9ware-official.com"
+            },
+            "wave": {
+                "description": "Modern exploit with wave-based injection and execution",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://wave-official.com"
+            },
+            "serotonin": {
+                "description": "Mood-enhancing exploit with smooth performance and reliability",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://serotonin-official.com"
+            },
+            "cryptic": {
+                "description": "Stealth-focused exploit with encrypted communication",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://cryptic-official.com"
+            },
+            "potassium": {
+                "description": "Essential exploit with potassium-rich performance boosts",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway"",
+                "website": "https://potassium-official.com"
+            },
+            "yerba": {
+                "description": "Energy-boosting exploit with sustained performance",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://yerba-official.com"
+            },
+            "aimmy": {
+                "description": "Aim-focused exploit with precision targeting capabilities",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://aimmy-official.com"
+            },
+            "charm": {
+                "description": "User-friendly exploit with charming interface and powerful features",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://charm-official.com"
+            },
+            "hydrogen": {
+                "description": "Lightweight macOS exploit with clean execution",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://hydrogen-official.com"
+            },
+            "macsploit": {
+                "description": "Comprehensive macOS exploit with extensive feature set",
+                "downloadLink": "https://robloxhsvc.pages.dev/underway",
+                "website": "https://robloxhsvc.pages.dev/underway"
+            }
         };
 
         // DOM Elements
         const downloadsContainer = document.getElementById('downloads-container');
+        const platformTabs = document.getElementById('platform-tabs');
+        let currentPlatform = 'windows';
+        let apiData = null;
 
         // Event Listeners
-        document.addEventListener('DOMContentLoaded', loadDownloads);
+        document.addEventListener('DOMContentLoaded', loadApiData);
+        platformTabs.addEventListener('click', handlePlatformChange);
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -573,58 +742,95 @@
         });
 
         // Functions
-        async function loadDownloads() {
+        async function loadApiData() {
             try {
-                const response = await fetch(CONFIG.jsonUrl);
+                const response = await fetch('https://api.voxlis.net/list');
                 if (!response.ok) {
-                    throw new Error('Failed to load downloads');
+                    throw new Error('Failed to load data from API');
                 }
                 
-                const data = await response.json();
-                displayDownloads(data.downloads);
+                apiData = await response.json();
+                displayDownloads(currentPlatform);
             } catch (error) {
-                console.error('Error loading downloads:', error);
+                console.error('Error loading API data:', error);
                 downloadsContainer.innerHTML = `
-                    <div class="loading">
-                        <p>Error loading downloads. Please try again later.</p>
+                    <div class="error">
+                        <p>Error loading exploits from API. Please try again later.</p>
+                        <p>Error details: ${error.message}</p>
                     </div>
                 `;
             }
         }
 
-        function displayDownloads(downloads) {
-            if (!downloads || downloads.length === 0) {
+        function handlePlatformChange(e) {
+            if (e.target.classList.contains('platform-tab')) {
+                // Update active tab
+                document.querySelectorAll('.platform-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                
+                // Update platform and display downloads
+                currentPlatform = e.target.dataset.platform;
+                displayDownloads(currentPlatform);
+            }
+        }
+
+        function displayDownloads(platform) {
+            if (!apiData || !apiData[platform]) {
                 downloadsContainer.innerHTML = `
                     <div class="loading">
-                        <p>No downloads available at the moment.</p>
+                        <p>Loading ${platform} exploits...</p>
                     </div>
                 `;
                 return;
             }
 
-            downloadsContainer.innerHTML = downloads.map(download => `
-                <div class="download-card">
-                    <div class="download-img" style="${download.image ? `background-image: url('${download.image}')` : `background-color: ${getRandomColor()}`}">
-                        ${!download.image ? download.title : ''}
+            const platformData = apiData[platform];
+            const exploits = Object.entries(platformData);
+
+            if (exploits.length === 0) {
+                downloadsContainer.innerHTML = `
+                    <div class="loading">
+                        <p>No ${platform} exploits available at the moment.</p>
                     </div>
-                    <div class="download-content">
-                        <h3>${download.title}</h3>
-                        <p>${download.description}</p>
-                        <div class="download-meta">
-                            <span>Version: ${download.version || '1.0.0'}</span>
-                            <span>Size: ${download.size || 'Unknown'}</span>
+                `;
+                return;
+            }
+
+            downloadsContainer.innerHTML = exploits.map(([name, data]) => {
+                const config = DOWNLOAD_CONFIG[name] || {
+                    description: `${name.charAt(0).toUpperCase() + name.slice(1)} exploit for ${platform}`,
+                    downloadLink: '#',
+                    website: null
+                };
+
+                return `
+                    <div class="download-card">
+                        <div class="download-img" style="background-color: ${getRandomColor()}">
+                            ${name.charAt(0).toUpperCase() + name.slice(1)}
                         </div>
-                        <div class="download-actions">
-                            <a href="${download.downloadLink}" class="btn btn-small" target="_blank">Download</a>
-                            ${download.website ? `<a href="${download.website}" class="btn btn-small btn-accent" target="_blank">Website</a>` : ''}
+                        <div class="download-content">
+                            <h3>${name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+                            <p>${config.description}</p>
+                            <div class="download-meta">
+                                <span class="status-badge ${data.updated ? 'status-updated' : 'status-outdated'}">
+                                    ${data.updated ? 'Updated' : 'Outdated'}
+                                </span>
+                                ${data.avg ? `<span>Avg: ${data.avg}ms</span>` : '<span>No ping data</span>'}
+                            </div>
+                            <div class="download-actions">
+                                <a href="${config.downloadLink}" class="btn btn-small" target="_blank">Download</a>
+                                ${config.website ? `<a href="${config.website}" class="btn btn-small btn-accent" target="_blank">Website</a>` : ''}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function getRandomColor() {
-            const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6'];
+            const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c', '#d35400', '#8e44ad'];
             return colors[Math.floor(Math.random() * colors.length)];
         }
     </script>
