@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSVc.Mods - Secure Roblox Mods Download</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #1a2530;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .name-customizer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
+        
+        .name-customizer input {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            width: 150px;
+        }
+        
+        .name-customizer button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .name-customizer button:hover {
+            background: #2980b9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+        
+        .features {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .downloads {
+            background: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .download-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-img {
+            height: 180px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .download-content {
+            padding: 1.5rem;
+        }
+        
+        .download-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .download-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        .download-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        .security {
+            padding: 4rem 0;
+        }
+        
+        .security-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .security-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .security-text h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .security-features {
+            list-style: none;
+        }
+        
+        .security-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .security-features li::before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .security-visual {
+            flex: 1;
+            min-width: 300px;
+            background: var(--primary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .security-visual h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1 id="site-name">HSVc.Mods</h1>
+                </div>
+                <div class="name-customizer">
+                    <input type="text" id="name-input" placeholder="Change site name">
+                    <button id="name-change-btn">Update</button>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#downloads">Downloads</a></li>
+                        <li><a href="#security">Security</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Secure Roblox Mods & Enhancements</h2>
+            <p>Download verified and safe modifications for Roblox to enhance your gaming experience. All our mods are thoroughly scanned for security.</p>
+            <a href="#downloads" class="btn">Browse Downloads</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose HSVc.Mods?</h2>
+                <p>We provide the safest and most reliable Roblox modifications available</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Security First</h3>
+                    <p>All mods are thoroughly scanned for malware and viruses before being made available for download.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Performance Optimized</h3>
+                    <p>Our mods are designed to enhance your gameplay without compromising performance or stability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Regular Updates</h3>
+                    <p>We continuously update our mods to ensure compatibility with the latest Roblox versions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Driven</h3>
+                    <p>Our mods are developed and tested by an active community of Roblox enthusiasts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="downloads" id="downloads">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Downloads</h2>
+                <p>Browse our collection of safe and verified Roblox modifications</p>
+            </div>
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="download-img" style="background-color: #3498db;">FPS Booster</div>
+                    <div class="download-content">
+                        <h3>Performance Enhancer</h3>
+                        <p>Boost your FPS and reduce lag in Roblox games with this lightweight mod.</p>
+                        <div class="download-meta">
+                            <span>Version: 2.1.4</span>
+                            <span>Size: 3.2 MB</span>
+                        </div>
+                        <div class="download-actions">
+                            <a href="#" class="btn btn-small">Download</a>
+                            <a href="#" class="btn btn-small btn-accent">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-card">
+                    <div class="download-img" style="background-color: #e74c3c;">UI Customizer</div>
+                    <div class="download-content">
+                        <h3>Advanced UI Mod</h3>
+                        <p>Customize your Roblox interface with new themes, layouts, and features.</p>
+                        <div class="download-meta">
+                            <span>Version: 1.7.2</span>
+                            <span>Size: 5.8 MB</span>
+                        </div>
+                        <div class="download-actions">
+                            <a href="#" class="btn btn-small">Download</a>
+                            <a href="#" class="btn btn-small btn-accent">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-card">
+                    <div class="download-img" style="background-color: #2ecc71;">Texture Pack</div>
+                    <div class="download-content">
+                        <h3>HD Texture Pack</h3>
+                        <p>Enhance Roblox visuals with high-definition textures for a better gaming experience.</p>
+                        <div class="download-meta">
+                            <span>Version: 3.0.1</span>
+                            <span>Size: 12.4 MB</span>
+                        </div>
+                        <div class="download-actions">
+                            <a href="#" class="btn btn-small">Download</a>
+                            <a href="#" class="btn btn-small btn-accent">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="security" id="security">
+        <div class="container">
+            <div class="security-content">
+                <div class="security-text">
+                    <h2>Your Security Is Our Priority</h2>
+                    <p>We understand the risks associated with downloading modifications for online games. That's why we've implemented multiple layers of security to protect our users.</p>
+                    <ul class="security-features">
+                        <li>All files are scanned with multiple antivirus engines</li>
+                        <li>Digital signatures verify file integrity</li>
+                        <li>Regular security audits of our codebase</li>
+                        <li>Secure HTTPS connections for all downloads</li>
+                        <li>Transparent update logs and version history</li>
+                    </ul>
+                    <a href="#" class="btn" style="margin-top: 1.5rem;">Learn More About Security</a>
+                </div>
+                <div class="security-visual">
+                    <h3>Security Status</h3>
+                    <p>All systems operational</p>
+                    <div style="font-size: 4rem; margin: 1.5rem 0;">🛡️</div>
+                    <p>Last security scan: Today, 10:42 AM</p>
+                    <p>Threats detected: 0</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>HSVc.Mods</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Downloads</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">All Mods</a></li>
+                        <li><a href="#">Popular</a></li>
+                        <li><a href="#">New Releases</a></li>
+                        <li><a href="#">Upcoming</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">DMCA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 HSVc.Mods. All rights reserved. Roblox is a registered trademark of Roblox Corporation. This site is not affiliated with Roblox Corporation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const siteNameElement = document.getElementById('site-name');
+            const nameInput = document.getElementById('name-input');
+            const nameChangeBtn = document.getElementById('name-change-btn');
+            
+            // Load saved name from localStorage if available
+            const savedName = localStorage.getItem('siteName');
+            if (savedName) {
+                siteNameElement.textContent = savedName;
+            }
+            
+            // Update site name when button is clicked
+            nameChangeBtn.addEventListener('click', function() {
+                const newName = nameInput.value.trim();
+                if (newName) {
+                    siteNameElement.textContent = newName;
+                    localStorage.setItem('siteName', newName);
+                    nameInput.value = '';
+                    
+                    // Show confirmation
+                    alert('Site name updated to: ' + newName);
+                }
+            });
+            
+            // Also update when Enter key is pressed in the input field
+            nameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    nameChangeBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
